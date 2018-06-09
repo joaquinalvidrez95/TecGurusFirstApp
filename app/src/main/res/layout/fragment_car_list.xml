@@ -5,6 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".fragment.CarListFragment">
 
+    <TextView
+        android:id="@+id/text_view_no_internet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="No hay internet"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_car_list"
         android:layout_width="match_parent"

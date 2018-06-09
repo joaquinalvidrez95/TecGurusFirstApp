@@ -44,6 +44,7 @@ class CarListFragment : Fragment() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
+                text_view_no_internet.visibility = View.INVISIBLE
                 cars.clear()
                 p0.children.forEach {
                     val car = it.getValue(Car::class.java)

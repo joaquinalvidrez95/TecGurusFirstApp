@@ -1,7 +1,11 @@
 package com.joaquinalvidrez.tecgurusfirstapp.activity
 
-import android.support.v7.app.AppCompatActivity
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.NotificationCompat
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,6 +34,18 @@ class CarDetailActivity : AppCompatActivity() {
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val car = p0.getValue(Car::class.java)
+
+                        val notificationCompat = NotificationCompat.Builder(applicationContext, "wwe")
+                                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                                .setContentTitle("Car selected")
+                                .setAutoCancel(true)
+                                .setContentText("A car was selected ${car?.branch}")
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                        (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+                                .notify(1, notificationCompat.build())
+
+
                         car?.let {
                             Picasso.get().load(it.url).into(image_view_car)
                             text_view_detail_branch.text = car.branch
@@ -40,6 +56,10 @@ class CarDetailActivity : AppCompatActivity() {
 
                     }
                 })
+
+        button_open_web_view.setOnClickListener {
+            startActivity(Intent(this, WebViewActivity::class.java))
+        }
 
 
     }
