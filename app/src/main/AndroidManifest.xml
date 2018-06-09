@@ -21,6 +21,19 @@
             android:name=".activity.CarDetailActivity"
             android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.WebViewActivity"></activity>
+
+        <service android:name=".service.NotificationFireBase">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".broadcastreceiver.ChargerReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
